@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🌾 Farm Easy — Smart Crop Prediction System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* 🎨 Background Gradient Animation */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(120deg, #a1ffce, #faffd1, #d4fc79, #96e6a1);
+      background-size: 300% 300%;
+      animation: gradientShift 12s ease infinite;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #222;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* 🌾 Main Glass Card */
+    .container {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      border-radius: 25px;
+      padding: 60px 50px;
+      max-width: 850px;
+      width: 90%;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    }
+
+    /* 🌱 Title */
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 3.2em;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #2e7d32, #43a047, #66bb6a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Subtitle */
+    h3 {
+      color: #388e3c;
+      font-weight: 600;
+      font-size: 1.3em;
+      margin-bottom: 25px;
+    }
+
+    /* Paragraph Text */
+    p {
+      font-size: 1.1em;
+      line-height: 1.8em;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      color: #2e7d32;
+      font-weight: 700;
+    }
+
+    /* 🌾 Button */
+    .btn-custom {
+      background: linear-gradient(90deg, #00c853, #64dd17, #aeea00);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 14px 40px;
+      font-size: 1.1em;
+      font-weight: 600;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 5px 18px rgba(76, 175, 80, 0.4);
+    }
+
+    .btn-custom:hover {
+      transform: scale(1.07);
+      background: linear-gradient(90deg, #64dd17, #aeea00, #00c853);
+      box-shadow: 0 8px 25px rgba(76,175,80,0.5);
+    }
+
+    /* 🌿 Icons Row */
+    .icons {
+      font-size: 1.8em;
+      margin: 20px 0;
+      animation: floatIcons 4s ease-in-out infinite;
+    }
+
+    @keyframes floatIcons {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* 🌾 Logo */
+    .logo {
+      width: 85px;
+      margin-bottom: 15px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(76,175,80,0.5);
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.9; }
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #444;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://cdn-icons-png.flaticon.com/512/3663/3663704.png" alt="Farm Easy Logo" class="logo">
+    <h1>Farm Easy</h1>
+    <h3>Smart Crop Prediction System 🌾</h3>
+
+    <p>
+      Welcome to <span class="highlight">Farm Easy</span> — a powered platform that helps farmers and agricultural experts
+      predict the <strong>most suitable crop</strong> to grow based on soil nutrients, temperature,
+      humidity, and rainfall. 🌦️
+    </p>
+
+    <div class="icons">🌾 🌽 🍅 🥭 ☀️ 🌧️ 🌻</div>
+
+    <p>
+      Empowering <strong>data-driven agriculture</strong> through Machine Learning and Flask web technology —
+      making farming smarter, easier, and more sustainable.
+    </p>
+
+    <a href="{{ url_for('register') }}" class="btn btn-custom">Get Started — Register Now</a>
+
+
+  </div>
+</body>
+</html>
