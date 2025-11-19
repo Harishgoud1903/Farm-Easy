@@ -1,122 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Crop Prediction System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(135deg, #6dd5ed, #56ab2f);
-            font-family: 'Poppins', sans-serif;
-            color: #2e2e2e;
-            min-height: 100vh;
-            padding-top: 50px;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
-            padding: 40px;
-            box-shadow: 0 0 35px rgba(0,0,0,0.3);
-            max-width: 800px;
-        }
-        h2 {
-            color: #2d572c;
-            font-weight: 700;
-            text-align: center;
-            font-size: 2rem;
-        }
-        label {
-            font-weight: 500;
-            color: #2d572c;
-        }
-        input::placeholder {
-            color: #999;
-            font-size: 0.9rem;
-        }
-        .btn-success {
-            width: 100%;
-            background-color: #56ab2f;
-            font-weight: 600;
-            border: none;
-            transition: 0.3s;
-        }
-        .btn-success:hover {
-            background-color: #3b7a27;
-            transform: scale(1.03);
-        }
-        .result {
-            margin-top: 25px;
-            text-align: center;
-            font-size: 1.5rem;
-            color: #2e7d32;
-            background-color: #e8f5e9;
-            padding: 15px;
-            border-radius: 10px;
-            font-weight: 600;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
-        .logout {
-            text-align: right;
-            margin-bottom: 10px;
-        }
-        .logout a {
-            font-weight: 600;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="logout">
-            <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm">Logout</a>
-        </div>
-        <h2>🌾 Crop Prediction Dashboard</h2>
-        <p class="text-center text-muted">Enter your soil and environmental values below to get the best crop suggestion.</p>
+{% extends "base.html" %}
+{% set page = "predict" %}
+{% block content %}
 
-        <form action="{{ url_for('predict') }}" method="POST" class="mt-3">
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <label>Nitrogen (N)</label>
-                    <input type="number" step="any" name="N" class="form-control" placeholder="e.g. 50" required>
-                </div>
-                <div class="col-md-4">
-                    <label>Phosphorus (P)</label>
-                    <input type="number" step="any" name="P" class="form-control" placeholder="e.g. 40" required>
-                </div>
-                <div class="col-md-4">
-                    <label>Potassium (K)</label>
-                    <input type="number" step="any" name="K" class="form-control" placeholder="e.g. 35" required>
-                </div>
-            </div>
+<div class="predict-panel">
+  <h2>Predict Best Crop</h2>
 
-            <div class="row g-3 mt-3">
-                <div class="col-md-4">
-                    <label>Temperature (°C)</label>
-                    <input type="number" step="any" name="temperature" class="form-control" placeholder="e.g. 26.5" required>
-                </div>
-                <div class="col-md-4">
-                    <label>Humidity (%)</label>
-                    <input type="number" step="any" name="humidity" class="form-control" placeholder="e.g. 80" required>
-                </div>
-                <div class="col-md-4">
-                    <label>pH Value</label>
-                    <input type="number" step="any" name="ph" class="form-control" placeholder="e.g. 6.5" required>
-                </div>
-            </div>
-
-            <div class="mt-3">
-                <label>Rainfall (mm)</label>
-                <input type="number" step="any" name="rainfall" class="form-control" placeholder="e.g. 120" required>
-            </div>
-
-            <button type="submit" class="btn btn-success mt-4">🌱 Predict Crop</button>
-        </form>
-
-        {% if prediction %}
-        <div class="result">
-            🌻 <strong>Recommended Crop:</strong> {{ prediction }}
-        </div>
-        {% endif %}
+  <form method="POST" class="predict-form">
+    <div class="row">
+      <div class="col"><input name="N" type="number" step="any" placeholder="Nitrogen (N)" required></div>
+      <div class="col"><input name="P" type="number" step="any" placeholder="Phosphorus (P)" required></div>
+      <div class="col"><input name="K" type="number" step="any" placeholder="Potassium (K)" required></div>
     </div>
-</body>
-</html>
+
+    <div class="row">
+      <div class="col"><input name="temperature" type="number" step="any" placeholder="Temperature (°C)" required></div>
+      <div class="col"><input name="humidity" type="number" step="any" placeholder="Humidity (%)" required></div>
+      <div class="col"><input name="ph" type="number" step="any" placeholder="pH value" required></div>
+    </div>
+
+    <div class="row single">
+      <input name="rainfall" type="number" step="any" placeholder="Rainfall (mm)" required>
+    </div>
+
+    <div class="row single">
+      <button class="btn-primary" type="submit">Predict</button>
+    </div>
+  </form>
+
+  {% if prediction %}
+    <div class="result-card">
+      <h3>Recommended Crop</h3>
+      <div class="result-pill">{{ prediction }}</div>
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}

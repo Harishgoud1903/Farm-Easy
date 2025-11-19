@@ -1,4 +1,164 @@
+/* -----------------------
+   GLOBAL FONT & RESET
+-------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; }
 body {
-  font-family: Arial, sans-serif;
-  margin: 40px;
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #072d20; /* default text color when needed */
+  background: #fff;
+}
+
+/* -----------------------
+   Background images (per page)
+-------------------------*/
+.page-bg { position: fixed; inset: 0; background-size: cover; background-position: center; z-index: -1; filter: brightness(0.5); }
+
+/* Put your images in static/images/ named home.jpg auth.jpeg predict.jpg crop.jpg */
+body.home .page-bg { background-image: url('/static/images/home.jpg'); }
+body.auth .page-bg { background-image: url('/static/images/auth.jpeg'); }
+body.predict .page-bg { background-image: url('/static/images/predict.jpg'); }
+body.crops .page-bg { background-image: url('/static/images/crop.jpg'); }
+
+/* -----------------------
+   Header / nav
+-------------------------*/
+.site-header { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,0.96); box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+.header-inner { max-width: 1150px; margin: 0 auto; padding: 14px 20px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.brand { display:flex; align-items:center; gap:12px; }
+.brand-title { font-weight:700; color:#0b5e44; font-size:20px; }
+.nav a { margin-left:18px; color:#0b5e44; text-decoration:none; font-weight:600; font-size:16px; }
+.nav a:hover { color:#064e3b; }
+
+/* -----------------------
+   Flash messages
+-------------------------*/
+.flash-wrap { max-width:1150px; margin: 18px auto; padding: 0 20px; }
+.flash { padding:12px 18px; border-radius:10px; color:white; font-weight:600; box-shadow:0 6px 18px rgba(3,10,10,0.06); }
+.flash.success { background:#16a34a; }
+.flash.warning { background:#f59e0b; }
+.flash.danger { background:#ef4444; }
+
+/* -----------------------
+   Main content wrapper
+-------------------------*/
+.container { max-width:1150px; margin: 0 auto; padding: 18px; }
+.main-content { padding: 28px 12px; }
+
+/* -----------------------
+   Hero (home)
+-------------------------*/
+.hero { display:flex; gap:28px; align-items:center; justify-content:space-between; padding:36px; margin-top:18px; background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.75)); border-radius:12px; }
+.hero-left { flex:1; min-width:320px; }
+.hero-left h1 { font-size:36px; color:#064e3b; line-height:1.02; margin-bottom:6px; }
+.lead { color:#4b5563; font-size:16px; margin-bottom:14px; }
+.cta { display:flex; gap:12px; align-items:center; }
+.hero-right { width:420px; height:260px; border-radius:12px; background-image:url('/static/images/home.jpg'); background-size:cover; background-position:center; box-shadow:0 10px 30px rgba(3,10,10,0.06); }
+
+/* -----------------------
+   Buttons
+-------------------------*/
+.btn-primary {
+  background: #0f9d52;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display:inline-block;
+}
+.btn-primary.ghost {
+  background: transparent;
+  color: #0f9d52;
+  border: 2px solid rgba(15,157,82,0.12);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(15,157,82,0.12); }
+
+/* -----------------------
+   Auth (login/register)
+-------------------------*/
+.auth-wrap { display:flex; justify-content:center; padding: 30px 0 60px; }
+.auth-card {
+  width: 460px;
+  background: rgba(255,255,255,0.96);
+  border-radius: 12px;
+  padding: 24px 28px;
+  box-shadow: 0 12px 30px rgba(2,6,23,0.08);
+}
+.auth-card h2 { font-size:22px; color:#083a2f; margin-bottom:6px; }
+.small-muted { color:#6b7280; margin-bottom:14px; display:block; }
+.form { display:flex; flex-direction:column; gap:12px; }
+.form input { padding:14px; border-radius:8px; border:1px solid #e6e6e6; font-size:15px; }
+.auth-footer { margin-top:10px; }
+
+/* -----------------------
+   Predict page
+-------------------------*/
+.predict-panel {
+  max-width: 880px;
+  margin: 12px auto 80px;
+  background: rgba(255,255,255,0.96);
+  padding: 26px;
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(2,6,23,0.08);
+}
+.predict-panel h2 { font-size:30px; color:#064e3b; margin-bottom:14px; }
+.predict-form .row { display:flex; gap:12px; margin-bottom:12px; }
+.predict-form .row.single { max-width: 420px; }
+.predict-form .col { flex:1; }
+.predict-form input { width:100%; padding:14px; border-radius:8px; border:1px solid #e6e6e6; font-size:17px; background:white; }
+
+/* Predict button bigger */
+.predict-form .btn-primary { padding:12px 22px; font-size:17px; }
+
+/* results */
+.result-card { margin-top:18px; background: #f7fff7; padding:18px; border-radius:10px; border-left:4px solid #0f9d52; }
+.result-card h3 { margin:0 0 8px 0; font-size:20px; color:#083a2f; }
+.result-pill { display:inline-block; background:#0f9d52; color:white; padding:10px 18px; border-radius:20px; font-weight:800; font-size:18px; }
+
+/* -----------------------
+   CROPS PAGE (kept intact)
+   These rules mirror existing crops styles; if you've
+   already had similar rules they will be compatible.
+-------------------------*/
+.crops-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; margin-top:18px; }
+.transparent-card {
+  border-radius:12px;
+  overflow:hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.92));
+  box-shadow: 0 8px 24px rgba(2,6,23,0.04);
+  display:flex; align-items:center; min-height:110px; padding:18px;
+}
+.crop-name { margin:0; color:#064e3b; font-size:20px; font-weight:800; }
+.crop-short { margin:0; color:#4b5563; font-size:14px; display:block; }
+
+/* crop details styles (if expanded) */
+.crop-details { margin-top:12px; padding:12px; background: rgba(250,250,250,0.95); border-radius:8px; color:#1f2937; box-shadow:0 6px 18px rgba(2,6,23,0.06); font-size:14px; line-height:1.6; }
+.crop-meta-list { list-style:none; padding:0; margin:8px 0 12px 0; display:flex; gap:10px; flex-wrap:wrap; }
+.crop-meta-list li { background: rgba(6,78,59,0.06); padding:6px 10px; border-radius:999px; color:#064e3b; font-weight:600; font-size:13px; }
+.crop-card { cursor:pointer; transition: transform .12s ease; }
+.crop-card:focus { outline: 3px solid rgba(6,78,59,0.12); box-shadow: 0 8px 30px rgba(6,78,59,0.08); transform: translateY(-4px); }
+
+/* -----------------------
+   Utility & responsiveness
+-------------------------*/
+.center { text-align:center; }
+.mt-24 { margin-top:24px; }
+
+@media (max-width: 992px) {
+  .crops-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero { flex-direction:column; }
+  .hero-right { width:100%; height:220px; margin-top:12px; }
+  .predict-form .row { flex-direction:column; }
+}
+
+@media (max-width: 600px) {
+  .crops-grid { grid-template-columns: 1fr; }
+  .header-inner { flex-direction:column; align-items:flex-start; gap:8px; padding:10px; }
+  .hero-left h1 { font-size:28px; }
+  .predict-panel { padding:18px; }
 }

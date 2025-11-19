@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% set page = "crops" %}
+{% block content %}
+
+<h2 class="page-heading">All Crops</h2>
+
+<div class="grid crops-grid no-images">
+  {% for name, crop in crops.items() %}
+  <article class="card crop-card transparent-card" tabindex="0" role="button"
+           aria-expanded="false" aria-controls="details-{{ loop.index }}">
+    <div class="card-body" onclick="toggleDetails({{ loop.index }});" onkeypress="if(event.key==='Enter') toggleDetails({{ loop.index }});">
+      <h3 class="crop-name">{{ name|replace('_', ' ')|capitalize }}</h3>
+      <p class="crop-short">{{ crop.description }}</p>
+
+      <!-- HIDDEN DETAILS BLOCK -->
+      <div id="details-{{ loop.index }}" class="crop-details" style="display:none;">
+        <ul class="crop-meta-list">
+          <li><strong>Soil:</strong> {{ crop.soil }}</li>
+          <li><strong>Temp:</strong> {{ crop.temperature }}</li>
+          <li><strong>Rainfall:</strong> {{ crop.rainfall }}</li>
+          <li><strong>pH:</strong> {{ crop.pH }}</li>
+        </ul>
+
+        <p><strong>Benefits:</strong> {{ crop.benefits }}</p>
+        <p><strong>Notes:</strong> {{ crop.notes }}</p>
+      </div>
+
+    </div>
+  </article>
+  {% endfor %}
+</div>
+
+<div class="center mt-24">
+  <a class="btn-primary large" href="{{ url_for('predict') }}">Go to Prediction</a>
+</div>
+
+<script>
+function toggleDetails(index) {
+  const el = document.getElementById('details-' + index);
+  if (!el) return;
+
+  // show/hide
+  if (el.style.display === 'none' || el.style.display === '') {
+    el.style.display = 'block';
+    // set aria-expanded on the parent card
+    const parent = el.closest('article');
+    if (parent) parent.setAttribute('aria-expanded','true');
+    // optional: scroll into view smoothly
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } else {
+    el.style.display = 'none';
+    const parent = el.closest('article');
+    if (parent) parent.setAttribute('aria-expanded','false');
+  }
+}
+</script>
+
+{% endblock %}
