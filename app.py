@@ -16,7 +16,8 @@ from urllib.parse import urlparse, urljoin
 # App setup
 # ------------------------
 app = Flask(__name__)
-app.secret_key = "replace_with_a_real_secret"
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key")
+
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DB_PATH = os.path.join(BASE_DIR, "users.db")
